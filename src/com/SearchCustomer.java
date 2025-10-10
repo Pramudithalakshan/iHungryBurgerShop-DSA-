@@ -13,25 +13,18 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SearchCustomer extends javax.swing.JFrame {
 
-    private BurgerCollection customerCollection;
+    private List list;
 
     /**
      * Creates new form SearchCustomer
      */
-    public SearchCustomer(BurgerCollection customerCollection) {
+    public SearchCustomer(List list) {
         initComponents();
-        this.customerCollection = customerCollection;
+        this.list = list;
     }
 
     private void searchCustomer() {
-        String id = txtCustomerID.getText();
-        Burger[] customer = customerCollection.searchCustomer(id);
-        if (customer == null) {
-            JOptionPane.showMessageDialog(this, "Customer not found..");
-        } else {
-            DefaultTableModel defaultTableModel = customerCollection.loadCustomerTable(customer);
-            tableCustomer.setModel(defaultTableModel);
-        }
+      
     }
 
     /**

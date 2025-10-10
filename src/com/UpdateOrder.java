@@ -12,15 +12,15 @@ import javax.swing.JOptionPane;
  */
 public class UpdateOrder extends javax.swing.JFrame {
 
-    private BurgerCollection customerCollection;
+    private List list;
     private static final int UNITE_PRICE = 500;
 
     /**
      * Creates new form UpdateOrder
      */
-    public UpdateOrder(BurgerCollection customerCollection) {
+    public UpdateOrder(List list) {
         initComponents();
-        this.customerCollection = customerCollection;
+        this.list = list;
         statusComboBox.addItem("Prepearing");
         statusComboBox.addItem("Delivered");
         statusComboBox.addItem("Cancelled");
@@ -196,38 +196,38 @@ public class UpdateOrder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int status = customerCollection.checkOrderStatus(txtOrderId.getText());
-        if (txtOrderId.getText().equals("") || txtQty.getText().equals("") || txtCustomerId.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Fill the required fields first");
-        } else {
-            if (status == 1 || status == 2) {
-                lblError.setText("You can not update cancelled or delivered orders");
-            } else {
-                int newStatus = (statusComboBox.getSelectedIndex() == 0) ? 0
-                        : (statusComboBox.getSelectedIndex() == 1) ? 1
-                        : 2;
-                String orId = txtOrderId.getText();
-                String orderId = customerCollection.getOrId(orId);
-                if (orderId.equals("null")) {
-                    JOptionPane.showMessageDialog(this, "No customer Id found.");
-                } else {
-                    String customerId = txtCustomerId.getText();
-                    int qty = Integer.parseInt(txtQty.getText());
-                    lblTotal.setText(qty * UNITE_PRICE + "");
-                    String name = txtCustomerName.getText();
-                    
-                    Burger customer = new Burger(orderId, customerId,name, qty, newStatus);
-                    boolean isUpdate = customerCollection.updateCustomer(customer);
-                    if (isUpdate) {
-                        JOptionPane.showMessageDialog(this, "Updated.");
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Update Fail.");
-                    }
-
-                }
-
-            }
-        }
+//        int status = customerCollection.checkOrderStatus(txtOrderId.getText());
+//        if (txtOrderId.getText().equals("") || txtQty.getText().equals("") || txtCustomerId.getText().equals("")) {
+//            JOptionPane.showMessageDialog(this, "Fill the required fields first");
+//        } else {
+//            if (status == 1 || status == 2) {
+//                lblError.setText("You can not update cancelled or delivered orders");
+//            } else {
+//                int newStatus = (statusComboBox.getSelectedIndex() == 0) ? 0
+//                        : (statusComboBox.getSelectedIndex() == 1) ? 1
+//                        : 2;
+//                String orId = txtOrderId.getText();
+//                String orderId = customerCollection.getOrId(orId);
+//                if (orderId.equals("null")) {
+//                    JOptionPane.showMessageDialog(this, "No customer Id found.");
+//                } else {
+//                    String customerId = txtCustomerId.getText();
+//                    int qty = Integer.parseInt(txtQty.getText());
+//                    lblTotal.setText(qty * UNITE_PRICE + "");
+//                    String name = txtCustomerName.getText();
+//                    
+//                    Burger customer = new Burger(orderId, customerId,name, qty, newStatus);
+//                    boolean isUpdate = customerCollection.updateCustomer(customer);
+//                    if (isUpdate) {
+//                        JOptionPane.showMessageDialog(this, "Updated.");
+//                    } else {
+//                        JOptionPane.showMessageDialog(this, "Update Fail.");
+//                    }
+//
+//                }
+//
+//            }
+//        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

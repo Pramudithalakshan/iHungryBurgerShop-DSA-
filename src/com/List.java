@@ -28,20 +28,24 @@ public class List {
     }
 
     public void addLast(Burger data) {
-        add(nextIndex, data);
+        add(0, data);
     }
 
-    public boolean add(int index, Burger data) {
-        if (isFull()) {
-            extendsArray();
+     public boolean add(int index, Burger burger){
+        if(index>=0 && index<=nextIndex){
+            if(isFull()){
+                extendsArray();
+            }
+            for (int i = nextIndex-1; i >=index; i--) {
+                burgerArray[i+1]=burgerArray[i];
+            }
+            burgerArray[index]=burger;
+            nextIndex++;
+            return true;
         }
-        for (int i = nextIndex - 1; i < index; i++) {
-            burgerArray[i + 1] = burgerArray[i];
-        }
-        burgerArray[index] = data;
-        nextIndex++;
-        return true;
+        return false;
     }
+
 
     public int capacity() {
         return burgerArray.length;
@@ -99,4 +103,15 @@ public class List {
         }
         return -1;
     }
+    
+    public String generateOrderId(){
+        if (nextIndex==0) {
+            return "B001";
+        }
+        String ls = burgerArray[nextIndex-1].getOrderID();
+        int lsNo = Integer.parseInt(ls.substring(1));
+        return String.format("B%04d", lsNo+1);
+    }
+    
+  
 }

@@ -11,13 +11,13 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
  * @author pramuditha-lakshan
  */
 public class ViewOrders extends javax.swing.JFrame {
-     private BurgerCollection customerCollection;
+     private List list;
     /**
      * Creates new form ViewOrders
      */
-    public ViewOrders(BurgerCollection customerCollection) {
+    public ViewOrders(List list) {
         initComponents();
-        this.customerCollection = customerCollection;
+        this.list = list;
         imageIcon();
     }
     public void imageIcon() {
@@ -186,15 +186,15 @@ public class ViewOrders extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnDeliveredOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveredOrdersActionPerformed
-       new DeliveredOrders(this.customerCollection).setVisible(true);
+       new DeliveredOrders(this.list).setVisible(true);
     }//GEN-LAST:event_btnDeliveredOrdersActionPerformed
 
     private void btnProcessingOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessingOrdersActionPerformed
-       new ProcessingOrders(this.customerCollection).setVisible(true);
+       new ProcessingOrders(this.list).setVisible(true);
     }//GEN-LAST:event_btnProcessingOrdersActionPerformed
 
     private void btnCancelledOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelledOrdersActionPerformed
-      new CancelledOrders(this.customerCollection).setVisible(true);
+      new CancelledOrders(this.list).setVisible(true);
     }//GEN-LAST:event_btnCancelledOrdersActionPerformed
 
     /**

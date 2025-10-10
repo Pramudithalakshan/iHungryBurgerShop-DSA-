@@ -13,37 +13,19 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SearchOrder extends javax.swing.JFrame {
 
-    private BurgerCollection customerCollection;
+    private List list;
     private static final int UNITE_PRICE = 500;
 
     /**
      * Creates new form SearchCustomer
      */
-    public SearchOrder(BurgerCollection customerCollection) {
+    public SearchOrder(List list) {
         initComponents();
-        this.customerCollection = customerCollection;
+        this.list = list;
     }
 
     private void searchOrder() {
-        String orId = txtOrderId.getText();
-        Burger customer = customerCollection.searchOrder(orId);
-        if (customer == null) {
-            JOptionPane.showMessageDialog(this, "Customer not found..");
-        } else {
-            lblCustomerId.setText(customer.getCustomerID());
-            lblOrderId.setText(customer.getOrderID());
-            lblQty.setText(customer.getQty() + "");
-            lblTotal.setText(customer.getQty() * UNITE_PRICE + "");
-            String status;
-            if (customer.getStatus() == 0) {
-                status = "Prepearing";
-            } else if (customer.getStatus() == 1) {
-                status = "Delivered";
-            } else {
-                status = "Cancelled";
-            }
-            lblStatus.setText(status);
-        }
+        
     }
 
     /**

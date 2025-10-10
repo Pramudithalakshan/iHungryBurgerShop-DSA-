@@ -5,15 +5,18 @@
 package com;
 
 import java.awt.HeadlessException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author pramuditha-lakshan
  */
-public class PlaceOrder extends javax.swing.JFrame {
+class PlaceOrder extends javax.swing.JFrame {
 
-    private BurgerCollection customerCollection;
     private List list;
     public static final int UNIT_PRICE = 500;
     public static final int PREPEARING = 0;
@@ -25,11 +28,10 @@ public class PlaceOrder extends javax.swing.JFrame {
      */
     
 
-    public PlaceOrder(BurgerCollection customerCollection,List list) {
+    public PlaceOrder(List list) {
         initComponents();
-        this.customerCollection = customerCollection;
         this.list = list;
-        lblOrderId.setText(customerCollection.generateOrderId());
+        lblOrderId.setText(list.generateOrderId());
     }
 
     /**
@@ -242,13 +244,32 @@ public class PlaceOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        if(txtCustomerId.getText().equals("") && txtCustomerName.getText().equals("") && txtQty.getText().equals("")){
+        JOptionPane.showMessageDialog(this, "Fill the required fields");
+        }else{
+             
+            try {
+                String customerId = txtCustomerId.getText();
+                String orderId = lblOrderId.getText();
+                String customerName = txtCustomerName.getText();
+                int qty = Integer.parseInt(txtQty.getText());
+                Burger burger = new Burger(orderId, customerId, customerName, qty, PREPEARING);
+                list.addLast(burger);
+                list.generateOrderId();
+                FileWriter fw = new FileWriter("burger.txt");
+                fw.write(orderId+","+customerId+","+customerName+","+qty+","+PREPEARING+"\n");
+                fw.close();
+            } catch (IOException ex) {
+                Logger.getLogger(PlaceOrder.class.getName()).log(Level.SEVERE, null, ex);
+            }  
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         txtCustomerId.setText("");
         txtQty.setText("");
         lblStatus.setText("");
+        txtCustomerName.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

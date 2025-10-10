@@ -11,18 +11,18 @@ import javax.swing.table.DefaultTableModel;
  * @author pramuditha-lakshan
  */
 public class ProcessingOrders extends javax.swing.JFrame {
-    private BurgerCollection customerCollection;
+    private List list;
     /**
      * Creates new form ProcessingOrders
      */
-    public ProcessingOrders(BurgerCollection customerCollection) {
+    public ProcessingOrders(List list) {
         initComponents();
-        this.customerCollection=customerCollection;
+        this.list=list;
         loadTable();
     }
      private void loadTable(){
-          DefaultTableModel model =  customerCollection.loadOrders(0);
-           tableProcessingOrder.setModel(model);
+//          DefaultTableModel model =  customerCollection.loadOrders(0);
+//           tableProcessingOrder.setModel(model);
     }
     /** 
      * This method is called from within the constructor to initialize the form.

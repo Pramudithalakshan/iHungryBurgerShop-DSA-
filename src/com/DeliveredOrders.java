@@ -11,18 +11,18 @@ import javax.swing.table.DefaultTableModel;
  * @author pramuditha-lakshan
  */
 public class DeliveredOrders extends javax.swing.JFrame {
-    private BurgerCollection customerCollection;
+    private List list;
     /**
      * Creates new form DeliveredOrders
      */
-    public DeliveredOrders(BurgerCollection customerCollection) {
+    public DeliveredOrders(List list) {
         initComponents();
-        this.customerCollection = customerCollection;
+        this.list = list;
          loadTable();
     }
     private void loadTable(){
-          DefaultTableModel model =  customerCollection.loadOrders(1);
-           tableDeliveredOrders.setModel(model);
+//          DefaultTableModel model =  customerCollection.loadOrders(1);
+//           tableDeliveredOrders.setModel(model);
     }
 
     /**

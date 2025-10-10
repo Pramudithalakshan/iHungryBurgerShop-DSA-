@@ -12,16 +12,16 @@ import javax.swing.ImageIcon;
  * @author pramuditha-lakshan
  */
 public class ShopMainForm extends javax.swing.JFrame {
-     private BurgerCollection customerCollection;
+      
      private List list;
      /**
      * Creates new form ShopMainForm
      */
-    public ShopMainForm(BurgerCollection customerCollection, List list) {
+    public ShopMainForm(List list) {
         initComponents();
         this.list = list;
-        this.customerCollection = customerCollection;
-        imageIcon();
+         
+        //imageIcon();
     }
     
   public void imageIcon() {
@@ -216,27 +216,27 @@ public class ShopMainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void btnSearchBestCusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchBestCusActionPerformed
-      new SearchbestCustomer(this.customerCollection).setVisible(true);
+      new SearchbestCustomer(this.list).setVisible(true);
     }//GEN-LAST:event_btnSearchBestCusActionPerformed
 
     private void btnSearchCusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchCusActionPerformed
-      new SearchCustomer(this.customerCollection).setVisible(true);
+      new SearchCustomer(this.list).setVisible(true);
     }//GEN-LAST:event_btnSearchCusActionPerformed
 
     private void btnSearchOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchOrderActionPerformed
-      new SearchOrder(this.customerCollection).setVisible(true);
+      new SearchOrder(this.list).setVisible(true);
     }//GEN-LAST:event_btnSearchOrderActionPerformed
 
     private void btnViewOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewOrderActionPerformed
-      new ViewOrders(this.customerCollection).setVisible(true);
+      new ViewOrders(this.list).setVisible(true);
     }//GEN-LAST:event_btnViewOrderActionPerformed
 
     private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
-      new PlaceOrder(this.customerCollection,this.list).setVisible(true);
+      new PlaceOrder(this.list).setVisible(true);
     }//GEN-LAST:event_btnPlaceOrderActionPerformed
 
     private void btnUpdateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateOrderActionPerformed
-       new UpdateOrder(customerCollection).setVisible(true);
+       new UpdateOrder(this.list).setVisible(true);
     }//GEN-LAST:event_btnUpdateOrderActionPerformed
 
     /**

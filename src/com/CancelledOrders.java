@@ -11,18 +11,18 @@ import javax.swing.table.DefaultTableModel;
  * @author pramuditha-lakshan
  */
 public class CancelledOrders extends javax.swing.JFrame {
-    private BurgerCollection customerCollection;
+    private List list;
     /**
      * Creates new form CancelledOrders
      */
-    public CancelledOrders(BurgerCollection customerCollection) {
+    public CancelledOrders(List list) {
         initComponents();
-        this.customerCollection =customerCollection;
+        this.list =list;
         loadTable();
     }
      private void loadTable(){
-          DefaultTableModel model =  customerCollection.loadOrders(2);
-           tableCancelledOrders.setModel(model);
+//          DefaultTableModel model =  customerCollection.loadOrders(2);
+//           tableCancelledOrders.setModel(model);
     }
     /**
      * This method is called from within the constructor to initialize the form.

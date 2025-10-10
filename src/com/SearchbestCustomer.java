@@ -12,22 +12,20 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SearchbestCustomer extends javax.swing.JFrame {
 
-    private BurgerCollection customerCollection;
+    private List list;
 
     /**
      * Creates new form SearchOrder
      */
-    public SearchbestCustomer(BurgerCollection customerCollection) {
+    public SearchbestCustomer(List list) {
         initComponents();
-        this.customerCollection = customerCollection;
+        this.list = list;
         loadBestCustomerDetails();
 
     }
 
     private void loadBestCustomerDetails() {
-        customerCollection.sortCustomerArray();
-        DefaultTableModel defaultTableModel = customerCollection.loadTable();
-        tableBestCustomer.setModel(defaultTableModel);
+       
     }
 
     /**
