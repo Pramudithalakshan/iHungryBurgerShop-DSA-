@@ -21,11 +21,13 @@ public class SearchbestCustomer extends javax.swing.JFrame {
         initComponents();
         this.list = list;
         loadBestCustomerDetails();
-
     }
 
+   
     private void loadBestCustomerDetails() {
-       
+        list.sortArray();
+        DefaultTableModel defaultTableModel = list.loadBestustomerTable();
+        tableBestCustomer.setModel(defaultTableModel);
     }
 
     /**

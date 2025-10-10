@@ -31,6 +31,7 @@ public class Main {
             }
 
             br.close();
+            list.testArray();
             new ShopMainForm(list).setVisible(true);
 
         } catch (FileNotFoundException ex) {

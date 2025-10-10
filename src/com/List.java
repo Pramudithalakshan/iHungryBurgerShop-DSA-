@@ -1,5 +1,7 @@
 package com;
 
+import javax.swing.table.DefaultTableModel;
+
 public class List {
 
     private Burger[] burgerArray;
@@ -112,6 +114,33 @@ public class List {
         int lsNo = Integer.parseInt(ls.substring(1));
         return String.format("B%04d", lsNo+1);
     }
+    
+    public void sortArray(){
+          for (int i = 0; i <nextIndex-1; i++) {
+            for (int j = 0; j < nextIndex-1-i; j++) {
+                if (burgerArray[j].getQty() < burgerArray[j + 1].getQty()) {
+                    Burger tempOrId = burgerArray[j];
+                    burgerArray[j] = burgerArray[j + 1];
+                    burgerArray[j + 1] = tempOrId;
+                }
+            }
+        }
+    }
+     public DefaultTableModel loadBestustomerTable() {
+        String[] columns = {"Order ID","Customer Name", "Customer Id", "Total"};
+        DefaultTableModel model = new DefaultTableModel(columns, 0);
+
+         for (int i = 0; i < nextIndex; i++) {
+            Object[] row = {burgerArray[i].getOrderID(),burgerArray[i].getCustomerName(), burgerArray[i].getCustomerID(), burgerArray[i].getQty() * 500};
+            model.addRow(row);
+         } 
+
+        return model;
+    }
+    
+     public void testArray(){
+         System.out.println(burgerArray[0].getOrderID());
+     }
     
   
 }

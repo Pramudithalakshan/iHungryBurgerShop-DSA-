@@ -32,6 +32,7 @@ class PlaceOrder extends javax.swing.JFrame {
         initComponents();
         this.list = list;
         lblOrderId.setText(list.generateOrderId());
+        
     }
 
     /**
