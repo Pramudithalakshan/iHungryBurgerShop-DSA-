@@ -24,7 +24,14 @@ public class SearchCustomer extends javax.swing.JFrame {
     }
 
     private void searchCustomer() {
-      
+      String id = txtCustomerID.getText();
+        Burger[] burger = list.searchCustomer(id);
+        if (burger == null) {
+            JOptionPane.showMessageDialog(this, "Customer not found..");
+        } else {
+            DefaultTableModel defaultTableModel = list.loadCustomerTable(burger);
+            tableCustomer.setModel(defaultTableModel);
+        }
     }
 
     /**
