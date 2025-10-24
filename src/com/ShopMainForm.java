@@ -21,7 +21,7 @@ public class ShopMainForm extends javax.swing.JFrame {
         initComponents();
         this.list = list;
          
-        //imageIcon();
+        imageIcon();
     }
     
   public void imageIcon() {

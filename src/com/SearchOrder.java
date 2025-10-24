@@ -25,7 +25,25 @@ public class SearchOrder extends javax.swing.JFrame {
     }
 
     private void searchOrder() {
-        
+         String orId = txtOrderId.getText();
+        Burger customer = list.searchOrder(orId);
+        if (customer == null) {
+            JOptionPane.showMessageDialog(this, "Order not found..");
+        } else {
+            lblCustomerId.setText(customer.getCustomerID());
+            lblOrderId.setText(customer.getOrderID());
+            lblQty.setText(customer.getQty() + "");
+            lblTotal.setText(customer.getQty() * UNITE_PRICE + "");
+            String status;
+            if (customer.getStatus() == 0) {
+                status = "Prepearing";
+            } else if (customer.getStatus() == 1) {
+                status = "Delivered";
+            } else {
+                status = "Cancelled";
+            }
+            lblStatus.setText(status);
+        }
     }
 
     /**

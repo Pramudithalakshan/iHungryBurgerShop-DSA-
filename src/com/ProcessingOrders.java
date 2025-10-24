@@ -21,8 +21,8 @@ public class ProcessingOrders extends javax.swing.JFrame {
         loadTable();
     }
      private void loadTable(){
-//          DefaultTableModel model =  customerCollection.loadOrders(0);
-//           tableProcessingOrder.setModel(model);
+          DefaultTableModel model =  list.loadOrders(0);
+           tableProcessingOrder.setModel(model);
     }
     /** 
      * This method is called from within the constructor to initialize the form.

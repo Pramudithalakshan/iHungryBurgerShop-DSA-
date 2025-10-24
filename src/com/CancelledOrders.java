@@ -21,8 +21,8 @@ public class CancelledOrders extends javax.swing.JFrame {
         loadTable();
     }
      private void loadTable(){
-//          DefaultTableModel model =  customerCollection.loadOrders(2);
-//           tableCancelledOrders.setModel(model);
+          DefaultTableModel model =  list.loadOrders(2);
+           tableCancelledOrders.setModel(model);
     }
     /**
      * This method is called from within the constructor to initialize the form.

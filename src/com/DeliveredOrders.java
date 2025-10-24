@@ -21,8 +21,8 @@ public class DeliveredOrders extends javax.swing.JFrame {
          loadTable();
     }
     private void loadTable(){
-//          DefaultTableModel model =  customerCollection.loadOrders(1);
-//           tableDeliveredOrders.setModel(model);
+          DefaultTableModel model =  list.loadOrders(1);
+           tableDeliveredOrders.setModel(model);
     }
 
     /**

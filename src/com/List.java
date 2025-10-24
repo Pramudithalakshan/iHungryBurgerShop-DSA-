@@ -61,7 +61,13 @@ public class List {
     }
 
     public void extendsArray() {
+     Burger[] tempBurgerArray=new Burger[(int)(burgerArray.length*(1+loadFactor))];
+        for (int i = 0; i < burgerArray.length; i++) {
+            tempBurgerArray[i]=burgerArray[i];
+        }
+        burgerArray=tempBurgerArray;
     }
+
 
     public void remove(int index) {
         for (int i = index; i < nextIndex - 1; i++) {
@@ -85,15 +91,7 @@ public class List {
         }
         return null;
     }
-
-    public void printList() {
-    }
-
-    public void clear() {
-    }
-
-    public void contains() {
-    }
+ 
 
     public int indexOf(Burger burger) {
         for (int i = 0; i < 10; i++) {
@@ -107,7 +105,7 @@ public class List {
 
     public String generateOrderId() {
         if (nextIndex == 0) {
-            return "B001";
+            return "B0001";
         }
         String ls = burgerArray[nextIndex - 1].getOrderID();
         int lsNo = Integer.parseInt(ls.substring(1));
@@ -138,10 +136,6 @@ public class List {
         return model;
     }
 
-    public void testArray() {
-        System.out.println(burgerArray[0].getOrderID());
-    }
-
     public Burger[] searchCustomer(String id) {
         Burger[] tempArray = new Burger[1];
         for (int i = 0; i < nextIndex; i++) {
@@ -152,21 +146,78 @@ public class List {
 
         return tempArray;
     }
-    
+
     public DefaultTableModel loadCustomerTable(Burger[] customer) {
         for (int i = 0; i < nextIndex; i++) {
             String[] columns = {"Order ID", "order Qty", "Total"};
             DefaultTableModel model = new DefaultTableModel(columns, 0);
 
-           for (int j = 0; j < nextIndex; j++) {
-            Object[] row = {burgerArray[j].getOrderID(), burgerArray[j].getQty(), burgerArray[i].getQty() * 500};
-            model.addRow(row);
-        }
+            for (int j = 0; j < nextIndex; j++) {
+                Object[] row = {burgerArray[j].getOrderID(), burgerArray[j].getQty(), burgerArray[i].getQty() * 500};
+                model.addRow(row);
+            }
 
             return model;
 
         }
         return null;
+
     }
 
+    public Burger searchOrder(String orId) {
+        for (int i = 0; i < nextIndex; i++) {
+            if (burgerArray[i].getOrderID().equalsIgnoreCase(orId)) {
+                return burgerArray[i];
+            }
+        }
+
+        return null;
+
+    }
+
+    public int checkOrderStatus(String orId) {
+        for (int i = 0; i < burgerArray.length; i++) {
+            if (burgerArray[i].getOrderID().equals(orId)) {
+                return burgerArray[i].getStatus();
+            }
+        }
+        return -1;
+    }
+
+    public DefaultTableModel loadOrders(int status) {
+        String[] columns = {"Order ID", "Customer ID", "Order Qty", "Total"};
+        DefaultTableModel model = new DefaultTableModel(columns, 0);
+        for (int i = 0; i < nextIndex; i++) {
+            if (burgerArray[i].getStatus() == status) {
+                Object[] row = {burgerArray[i].getOrderID(), burgerArray[i].getCustomerID(), burgerArray[i].getQty(), burgerArray[i].getQty() * 500};
+                model.addRow(row);
+            }
+        }
+
+        return model;
+    }
+    
+    public boolean updateCustomer(Burger burger){
+        int index=indexOfBurger(burger);
+        burgerArray[index]=burger;
+        return true;
+    }
+    
+    public int indexOfBurger(Burger burger){
+        for (int i = 0; i <nextIndex; i++) {
+            if(burgerArray[i].getOrderID().equalsIgnoreCase(burger.getOrderID())){
+                return i;
+            }
+        }
+        return -1;
+    }  
+    
+     public String getOrId(String orId){
+        for (int i = 0; i < nextIndex; i++) {
+            if(burgerArray[i].getOrderID().equals(orId)){
+              return burgerArray[i].getCustomerID();
+            }
+        }
+        return "null";
+    }
 }

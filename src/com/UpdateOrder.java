@@ -4,6 +4,11 @@
  */
 package com;
 
+import static com.PlaceOrder.PREPEARING;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -196,38 +201,52 @@ public class UpdateOrder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//        int status = customerCollection.checkOrderStatus(txtOrderId.getText());
-//        if (txtOrderId.getText().equals("") || txtQty.getText().equals("") || txtCustomerId.getText().equals("")) {
-//            JOptionPane.showMessageDialog(this, "Fill the required fields first");
-//        } else {
-//            if (status == 1 || status == 2) {
-//                lblError.setText("You can not update cancelled or delivered orders");
-//            } else {
-//                int newStatus = (statusComboBox.getSelectedIndex() == 0) ? 0
-//                        : (statusComboBox.getSelectedIndex() == 1) ? 1
-//                        : 2;
-//                String orId = txtOrderId.getText();
-//                String orderId = customerCollection.getOrId(orId);
-//                if (orderId.equals("null")) {
-//                    JOptionPane.showMessageDialog(this, "No customer Id found.");
-//                } else {
-//                    String customerId = txtCustomerId.getText();
-//                    int qty = Integer.parseInt(txtQty.getText());
-//                    lblTotal.setText(qty * UNITE_PRICE + "");
-//                    String name = txtCustomerName.getText();
-//                    
-//                    Burger customer = new Burger(orderId, customerId,name, qty, newStatus);
-//                    boolean isUpdate = customerCollection.updateCustomer(customer);
-//                    if (isUpdate) {
-//                        JOptionPane.showMessageDialog(this, "Updated.");
-//                    } else {
-//                        JOptionPane.showMessageDialog(this, "Update Fail.");
-//                    }
-//
-//                }
-//
-//            }
-//        }
+        int status = list.checkOrderStatus(txtOrderId.getText());
+        if (txtOrderId.getText().equals("") || txtQty.getText().equals("") || txtCustomerId.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Fill the required fields first");
+        } else {
+            if (status == 1 || status == 2) {
+                lblError.setText("You can not update cancelled or delivered orders");
+            } else {
+                int newStatus = (statusComboBox.getSelectedIndex() == 0) ? 0
+                        : (statusComboBox.getSelectedIndex() == 1) ? 1
+                        : 2;
+                String orId = txtOrderId.getText();
+                String orderId = list.getOrId(orId);
+                if (orderId.equals("null")) {
+                    JOptionPane.showMessageDialog(this, "No customer Id found.");
+                } else {
+                    String customerId = txtCustomerId.getText();
+                    int qty = Integer.parseInt(txtQty.getText());
+                    lblTotal.setText(qty * UNITE_PRICE + "");
+                    String name = txtCustomerName.getText();
+
+                    Burger customer = new Burger(orderId, customerId, name, qty, newStatus);
+                    boolean isUpdate = list.updateCustomer(customer);
+                    if (isUpdate) {
+                        JOptionPane.showMessageDialog(this, "Updated.");
+                        try {
+                            String cusId = txtCustomerId.getText();
+                            String oId = txtOrderId.getText();
+                            String customerName = txtCustomerName.getText();
+                            int q = Integer.parseInt(txtQty.getText());
+                            Burger burger = new Burger(orderId, customerId, customerName, qty, PREPEARING);
+                            list.addLast(burger);
+                            list.generateOrderId();
+                            FileWriter fw = new FileWriter("burger.txt");
+                            fw.write(oId + "," + cusId + "," + customerName + "," + q + "," + statusComboBox.getSelectedIndex() + "\n");
+                            fw.close();
+                        } catch (IOException ex) {
+                            Logger.getLogger(PlaceOrder.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Update Fail.");
+                    }
+
+                }
+
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
